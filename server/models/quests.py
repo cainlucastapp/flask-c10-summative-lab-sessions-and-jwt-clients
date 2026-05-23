@@ -81,11 +81,12 @@ class Quest(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email,
-            'character_class': self.character_class,
-            'level': self.level,
-            'gold': self.gold,
+            'title': self.title,
+            'description': self.description,
+            'status': self.status,
+            'difficulty': self.difficulty,
+            'reward_gold': self.reward_gold,
+            'user_id': self.user_id,
             'created_at': self.created_at.isoformat(),
             'updated_at': self.updated_at.isoformat()
         }

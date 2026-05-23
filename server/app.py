@@ -12,7 +12,6 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     bcrypt.init_app(app)
-    api.init_app(app)
     cors.init_app(app, resources={r"/*": {"origins": "http://localhost:4000"}}, supports_credentials=True)
 
     # Import models so migrate can detect them
@@ -31,9 +30,13 @@ def create_app():
     api.add_resource(QuestList, '/quests')
     api.add_resource(QuestDetail, '/quests/<int:id>')
 
+    # Init api last after all resources registered
+    api.init_app(app)
+
     return app
 
 app = create_app()
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

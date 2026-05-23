@@ -90,12 +90,11 @@ class User(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'title': self.title,
-            'description': self.description,
-            'status': self.status,
-            'difficulty': self.difficulty,
-            'reward_gold': self.reward_gold,
-            'user_id': self.user_id,
+            'username': self.username,
+            'email': self.email,
+            'character_class': self.character_class,
+            'level': self.level,
+            'gold': self.gold,
             'created_at': self.created_at.isoformat(),
             'updated_at': self.updated_at.isoformat()
         }
