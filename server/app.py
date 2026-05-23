@@ -14,7 +14,7 @@ def create_app():
     migrate.init_app(app, db)
     bcrypt.init_app(app)
     api.init_app(app)
-    cors.init_app(app)
+    cors.init_app(app, resources={r"/*": {"origins": "http://localhost:4000"}}, supports_credentials=True)
 
     # Import models so migrate can detect them
     from models.user import User
