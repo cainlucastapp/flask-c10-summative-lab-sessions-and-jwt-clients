@@ -73,7 +73,7 @@ class Signup(Resource):
 
             session['user_id'] = user.id
 
-            return _user_response(user), 201
+            return user.to_dict(), 201
 
         except ValueError as e:
             db.session.rollback()
@@ -104,7 +104,7 @@ class Login(Resource):
 
         session['user_id'] = user.id
 
-        return _user_response(user), 200
+        return user.to_dict(), 200
 
 
 class CheckSession(Resource):
@@ -114,7 +114,7 @@ class CheckSession(Resource):
         if not user:
             return {}, 204
 
-        return _user_response(user), 200
+        return user.to_dict(), 200
 
 
 class Logout(Resource):
@@ -124,15 +124,3 @@ class Logout(Resource):
 
         session.pop('user_id', None)
         return {}, 204
-
-
-# Private helper — keeps responses consistent across all auth routes
-def _user_response(user):
-    return {
-        'id': user.id,
-        'username': user.username,
-        'email': user.email,
-        'character_class': user.character_class,
-        'level': user.level,
-        'gold': user.gold
-    }

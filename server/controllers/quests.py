@@ -31,7 +31,7 @@ class QuestList(Resource):
             .order_by(Quest.created_at.desc())\
             .paginate(page=page, per_page=per_page, error_out=False)
 
-        quests = [_quest_response(q) for q in paginated.items]
+        quests = [q.to_dict() for q in paginated.items]
 
         return {
             'quests': quests,
@@ -82,7 +82,7 @@ class QuestList(Resource):
             db.session.add(quest)
             db.session.commit()
 
-            return _quest_response(quest), 201
+            return quest.to_dict(), 201
 
         except ValueError as e:
             db.session.rollback()
@@ -130,7 +130,7 @@ class QuestDetail(Resource):
 
             db.session.commit()
 
-            return _quest_response(quest), 200
+            return quest.to_dict(), 200
 
         except ValueError as e:
             db.session.rollback()
@@ -156,18 +156,3 @@ class QuestDetail(Resource):
         except Exception as e:
             db.session.rollback()
             return {'errors': ['An unexpected error occurred.']}, 500
-
-
-# Private helper
-def _quest_response(quest):
-    return {
-        'id': quest.id,
-        'title': quest.title,
-        'description': quest.description,
-        'status': quest.status,
-        'difficulty': quest.difficulty,
-        'reward_gold': quest.reward_gold,
-        'user_id': quest.user_id,
-        'created_at': quest.created_at.isoformat(),
-        'updated_at': quest.updated_at.isoformat()
-    }
