@@ -77,6 +77,18 @@ class Quest(db.Model):
         if not isinstance(user_id, int):
             raise ValueError('user_id must be an integer.')
         return user_id
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'character_class': self.character_class,
+            'level': self.level,
+            'gold': self.gold,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat()
+        }
 
     def __repr__(self):
         return f'<Quest {self.title} | {self.difficulty} | {self.status}>'

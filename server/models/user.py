@@ -86,6 +86,19 @@ class User(db.Model):
         if gold < 0:
             raise ValueError('Gold cannot be negative.')
         return gold
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'status': self.status,
+            'difficulty': self.difficulty,
+            'reward_gold': self.reward_gold,
+            'user_id': self.user_id,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat()
+        }
 
     def __repr__(self):
         return f'<User {self.username} | {self.character_class} | Level {self.level}>'
