@@ -196,6 +196,29 @@ GET /quests?page=1&per_page=10
 
 ---
 
+## 💻 Frontend Setup
+
+1. **Navigate to the client folder**
+```bash
+   cd client-with-sessions
+```
+
+2. **Install dependencies**
+```bash
+   npm install
+```
+
+3. **Start the client**
+```bash
+   npm start
+```
+
+The client will run at `http://localhost:4000`
+
+> Note: The Flask backend must be running on port 5555 before starting the client.
+
+---
+
 ## 🔒 Security Features
 
 - Passwords hashed / salted with bcrypt 
