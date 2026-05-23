@@ -4,7 +4,7 @@ from flask import request, session
 from flask_restful import Resource
 from models.user import User
 from extensions import db
-
+from functools import wraps
 
 def current_user():
     #Helper to get the current logged in user from session.
@@ -15,12 +15,12 @@ def current_user():
 
 
 def login_required(func):
-    #Decorator to protect routes that require authentication.
+    # Decorator to protect routes that require authentication.
+    @wraps(func)
     def wrapper(*args, **kwargs):
         if not current_user():
             return {'errors': ['Unauthorized. Please log in.']}, 401
         return func(*args, **kwargs)
-    wrapper.__name__ = func.__name__
     return wrapper
 
 
