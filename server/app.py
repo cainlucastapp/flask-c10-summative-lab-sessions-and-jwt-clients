@@ -28,7 +28,9 @@ def create_app():
     api.add_resource(Logout, '/logout')
 
     # Register controllers
-    # from controllers.quests import *
+    from controllers.quests import QuestList, QuestDetail
+    api.add_resource(QuestList, '/quests')
+    api.add_resource(QuestDetail, '/quests/<int:id>')
 
     return app
 
