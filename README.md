@@ -64,6 +64,29 @@ The API will be running at `http://127.0.0.1:5555`
 
 ---
 
+## 💻 Frontend Setup
+
+1. **Navigate to the client folder**
+```bash
+   cd client-with-sessions
+```
+
+2. **Install dependencies**
+```bash
+   npm install
+```
+
+3. **Start the client**
+```bash
+   npm start
+```
+
+The client will run at `http://localhost:4000`
+
+> Note: The Flask backend must be running on port 5555 before starting the client.
+
+---
+
 ## 🌐 API Endpoints
 
 ### Auth
@@ -193,29 +216,6 @@ GET /quests?page=1&per_page=10
 | Alistare | Rogue | 3 | 34n21poirrn!@$#21n4i32n42$#@M$ono32n1l2n4l321n4lnr3#@ |
 | Kaiser | Paladin | 4 | forthelord |
 | Volstage | Ranger | 1 | ilikesquires |
-
----
-
-## 💻 Frontend Setup
-
-1. **Navigate to the client folder**
-```bash
-   cd client-with-sessions
-```
-
-2. **Install dependencies**
-```bash
-   npm install
-```
-
-3. **Start the client**
-```bash
-   npm start
-```
-
-The client will run at `http://localhost:4000`
-
-> Note: The Flask backend must be running on port 5555 before starting the client.
 
 ---
 
